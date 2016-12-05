@@ -56,8 +56,8 @@ a {
 .page-header {
   color: #fff;
   text-align: center;
-  background-color: #159957;
-  background-image: url('stylesheets/057pattern.png'); }
+  background-color: rgba(0, 43, 84, 1);
+  background-image: url('./057pattern.png'); }
 
 @media screen and (min-width: 64em) {
   .page-header {
