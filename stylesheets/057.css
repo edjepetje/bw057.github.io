@@ -27,5 +27,5 @@ body {
   background-color: rgba(0, 43, 84, 1);
   font-weight: 100;
   font-variant: small-caps;
-  background-image: url('../images/057pattern.png');
+  background-image: url('./057pattern.png');
  }
