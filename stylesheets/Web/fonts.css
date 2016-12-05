@@ -1,0 +1,22 @@
+@font-face {
+	font-family:'Excellence In Motion Screen';
+	src:	url('ExcellenceInMotion-Regular_Beta.eot');
+	src:	url('ExcellenceInMotion-Regular_Beta.eot?#iefix') format('embedded-opentype'),
+			url('ExcellenceInMotion-Regular_Beta.woff2') format('woff2'),
+			url('ExcellenceInMotion-Regular_Beta.woff') format('woff'),
+			url('ExcellenceInMotion-Regular_Beta.svg') format('svg');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family:'Excellence In Motion Screen';
+	src:	url('ExcellenceInMotion-Bold_Beta.eot');
+	src:	url('ExcellenceInMotion-Bold_Beta.eot?#iefix') format('embedded-opentype'),
+			url('ExcellenceInMotion-Bold_Beta.woff2') format('woff2'),
+			url('ExcellenceInMotion-Bold_Beta.woff') format('woff'),
+			url('ExcellenceInMotion-Bold_Beta.svg') format('svg');
+	font-weight: 700;
+	font-style: normal;
+}
+
