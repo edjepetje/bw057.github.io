@@ -15,7 +15,10 @@
       <h1 class="project-name">EIM test</h1>
       <h2 class="project-tagline">Excellence In Motion Screen</h2>
     </section>
-
+    
+    <label for="letter-spacing">Change letter spacing  to</label>
+        <input id="letter-spacing" step="0.005" type="number" value="0.0" onchange="setSpacing(this.value)"> (em)
+    
     <section class="main-content">
       <h1>
 <a id="header-1" class="anchor" href="#header-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Header 1</h1>
@@ -49,8 +52,6 @@
 
       <footer class="site-footer">
 
-        <label for="letter-spacing">Letter spacing (in <code>em</code>)</label>
-        <input id="letter-spacing" step="0.005" type="number" value="0.0" onchange="setSpacing(this.value)">
       </footer>
 
     </section>
