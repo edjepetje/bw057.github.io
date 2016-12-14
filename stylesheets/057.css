@@ -1,6 +1,9 @@
 body {
   font-family: "Excellence In Motion Screen", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+.page-header {
+  font-variant: normal;
+}
 
 .btn {
   display: inline-block;
