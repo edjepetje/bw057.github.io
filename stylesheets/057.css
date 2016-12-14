@@ -1,9 +1,6 @@
 body {
   font-family: "Excellence In Motion Screen", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.page-header {
-  font-variant: normal;
-}
 
 .btn {
   display: inline-block;
@@ -29,7 +26,7 @@ body {
   text-align: center;
   background-color: rgba(0, 43, 84, 1);
   font-weight: 100;
-  font-variant: small-caps;
+  font-variant: normal;
   background-image: url('./057pattern.png');
  }
 
