@@ -1,0 +1,195 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="560" height="800"
+     viewBox="0 0  560 800"
+     version="1.1">
+  <style>
+  /* <![CDATA[ */
+    svg {
+        scroll-behavior: smooth;
+    }
+    rect {
+        fill: rgba(255, 255, 255, .5);
+        stroke: white;
+        stroke-width: 4px;
+    }
+    rect:focus, rect:hover {
+        fill: rgba(0, 0, 255, .1);
+        stroke-width: 8px;
+    }
+    rect:hover {
+        cursor:pointer;
+    }
+    rect.mine {
+        fill: rgba(255, 0, 0, .6);
+    }
+    rect.background {
+        stroke: transparent;
+        fill: #006;
+        cursor: default;
+    }
+    rect.disabled,rect.disabled:hover {
+        stroke: #777;
+        fill: rgba(128, 128, 128, .5);
+        opacity: 0.75;
+    }
+    text {
+        font-family: sans-serif;
+        stroke: white;
+        font-size: 48px;
+        fill: white;
+    }
+
+ /* ]]> */
+  </style>
+
+  <rect x="0" y="0" width="560" height="100%" class="background"/>
+
+
+  <text class="seatnumber" x="24" y="75">1A</text>
+  <rect id="1A" x="10" y="10" width="100" height="100" tabindex="1"/>
+  <text class="seatnumber" x="134" y="75">1B</text>
+  <rect id="1B" x="120" y="10" width="100" height="100" tabindex="2"/>
+  <text class="seatnumber" x="355" y="75">1C</text>
+  <rect id="1C" x="340" y="10" width="100" height="100" tabindex="3"/>
+  <text class="seatnumber" x="465" y="75">1D</text>
+  <rect id="1D" x="450" y="10" width="100" height="100" tabindex="4"/>
+
+  <text class="seatnumber" x="24" y="205">2A</text>
+  <rect id="2A" x="10" y="140" width="100" height="100" tabindex="5"/>
+  <text class="seatnumber" x="134" y="205">2B</text>
+  <rect id="2B" x="120" y="140" width="100" height="100" tabindex="6"/>
+  <text class="seatnumber" x="355" y="205">2C</text>
+  <rect id="2C" x="340" y="140" width="100" height="100" class="disabled"/>
+  <text class="seatnumber" x="465" y="205">2D</text>
+  <rect id="2D" x="450" y="140" width="100" height="100" tabindex="8"/>
+
+  <text class="seatnumber" x="24" y="335">3A</text>
+  <rect id="3A" x="10" y="270" width="100" height="100" tabindex="9"/>
+  <text class="seatnumber" x="134" y="335">3B</text>
+  <rect id="3B" x="120" y="270" width="100" height="100" tabindex="10"/>
+  <text class="seatnumber" x="355" y="335">3C</text>
+  <rect id="3C" x="340" y="270" width="100" height="100" tabindex="11"/>
+  <text class="seatnumber" x="465" y="335">3D</text>
+  <rect id="3D" x="450" y="270" width="100" height="100" tabindex="12"/>
+
+  <text class="seatnumber" x="24" y="465">4A</text>
+  <rect id="4A" x="10" y="400" width="100" height="100" class="disabled"/>
+  <text class="seatnumber" x="134" y="465">4B</text>
+  <rect id="4B" x="120" y="400" width="100" height="100" tabindex="14"/>
+  <text class="seatnumber" x="355" y="465">4C</text>
+  <rect id="4C" x="340" y="400" width="100" height="100" tabindex="15"/>
+  <text class="seatnumber" x="465" y="465">4D</text>
+  <rect id="4D" x="450" y="400" width="100" height="100" tabindex="16"/>
+
+
+  <text class="seatnumber" x="134" y="595">5B</text>
+  <rect id="5B" x="120" y="530" width="100" height="100" tabindex="17"/>
+  <text class="seatnumber" x="355" y="595">5C</text>
+  <rect id="5C" x="340" y="530" width="100" height="100" tabindex="18"/>
+
+  <text id="indicator" x="0" y="730" class="indicator"></text>
+
+  <script>
+  <![CDATA[
+      var gSelectedSeat = "5C";
+
+      function toast(pMessage) {
+          document.getElementById('indicator').innerHTML = pMessage;
+      }
+
+      function selectSeat(pSeatNumber) {
+          document.getElementById(gSelectedSeat).setAttribute("class", "")
+          document.getElementById(pSeatNumber).setAttribute("class", "mine")
+          gSelectedSeat = pSeatNumber;
+          toast(`Selected seat ${pSeatNumber}`);
+      }
+
+      function findAdjacentSeat(pSeatNumber, pDirection) {
+          return '5C';
+      }
+
+      function navigate(pSeatNumber, pDirection) {
+          toast(pDirection)
+          document.getElementById(findAdjacentSeat(pSeatNumber, pDirection)).focus();
+      }
+
+      function onKeyDown(pEvent) {
+          switch (pEvent.key) {
+              case "Enter":
+              case " ":
+                  selectSeat(pEvent.target.attributes["id"].value);
+                  break;
+            //   case "ArrowUp":
+            //   case "w":
+            //   case "j":
+            //       navigate(pEvent.target.attributes["id"].value, 'UP');
+            //       break;
+            //   case "ArrowLeft":
+            //   case "a":
+            //   case "h":
+            //       navigate(pEvent.target.attributes["id"].value, 'LEFT');
+            //       break;
+            //   case "ArrowDown":
+            //   case "s":
+            //   case "k":
+            //       navigate(pEvent.target.attributes["id"].value, 'DOWN');
+            //       break;
+            //   case "ArrowRight":
+            //   case "d":
+            //   case "l":
+            //       navigate(pEvent.target.attributes["id"].value, 'RIGHT');
+            //       break;
+              default:
+                console.log(pEvent.key);
+
+
+          }
+      }
+
+      function onMouseDown(pEvent) {
+          selectSeat(pEvent.target.id)
+      }
+
+      var lRects = document.getElementsByTagName('rect');
+      for (var i = 0; i < lRects.length; i++){
+          if(Boolean(lRects[i].attributes.id) && lRects[i].getAttribute("class") !== 'disabled') {
+              lRects[i].addEventListener(
+                  'keypress', // keypress doesn't catch arrow keys in most browsers...
+                  onKeyDown
+              );
+              lRects[i].addEventListener(
+                  'mousedown', // keypress doesn't catch arrow keys in most browsers...
+                  onMouseDown
+              );
+          }
+      }
+      /**
+       * Tries to put the middle of seat pSeatNumber in the middle
+       * of the current viewport
+       *
+       * @param  {string} pSeatNumber The id of the rect representing a seat
+       * @return {[type]}             [description]
+       */
+      function scrollToSeat(pSeatNumber) {
+          var lBBox = document.getElementById(pSeatNumber).getBBox();
+          var lSeatMiddleCoords = {};
+          var lWindowMiddleCoords = {};
+
+          lSeatMiddleCoords.x = lBBox.x + (lBBox.width/2);
+          lSeatMiddleCoords.y = lBBox.y + (lBBox.height/2);
+
+          lWindowMiddleCoords.x = window.innerWidth/2;
+          lWindowMiddleCoords.y = window.innerHeight/2;
+
+
+          window.scrollTo(
+              lSeatMiddleCoords.x - lWindowMiddleCoords.x,
+              lSeatMiddleCoords.y - lWindowMiddleCoords.y
+          );
+
+      }
+  ]]>
+  </script>
+
+</svg>
