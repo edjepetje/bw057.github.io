@@ -83,21 +83,21 @@
     </style>
   </head>
 <body>
-<h1>Allez hop!</h1>
+<h1 class="tr" data-label="title">Allez hop!</h1>
 <form id="daform" action="voycamino" method="get">
     <fieldset>
         <legend><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></legend>
         <div class="formline">
-            <label for="ticketnumber">N<sup>o</sup> de billet</label><input type="text" name="ticketnumber" id="ticketnumber" value="">
+            <label data-label="ticketnumber" class="tr" for="ticketnumber">N<sup>o</sup> de billet</label><input type="text" inputmode="numeric" pattern="[0-9]{13}|[0-9]{3}-[0-9]{10}" name="ticketnumber" id="ticketnumber" value="">
         </div>
         <div class="formline">
-          <label for="flightnumber">N<sup>o</sup> du vol</label><input type="text" name="flightnumber" id="flightnumber" value="">
+          <label data-label="flightnumber" class="tr" for="flightnumber">N<sup>o</sup> du vol</label><input type="text" name="flightnumber" pattern="[A-Z]{2}[0-9]{1,4}" id="flightnumber" value="">
         </div>
         <div class="formline">
-            <label for="departurestation">Départ de</label><input type="text" name="departurestation" id="departurestation" value="AMS">
+            <label data-label="departurestation" class="tr" for="departurestation">Départ de</label><input type="text" name="departurestation" pattern="[A-Z]{3}" id="departurestation" value="AMS">
         </div>
         <div class="formline">
-            <input class="btn" type="submit" value="Enregistre moi"></input>
+            <input class="btn tr" data-label="submit" type="submit" value="Enregistre moi"></input>
         </div>
     </fieldset>
 
@@ -106,15 +106,15 @@
             <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
         </legend>
         <div class="formline">
-            <label for="language">Langue</label>
+            <label class="tr" data-label="language" for="language">Langue</label>
             <select id="language">
-                <option value="en">Anglais</option>
+                <option value="en">English</option>
                 <option value="fr">Français</option>
-                <option value="nl">Néerlandais</option>
+                <option value="nl">Nederlands</option>
             </select>
         </div>
         <div class="formline">
-            <label for="cctld">Pays</label>
+            <label class="tr" data-label="cctld" for="cctld">Pays</label>
             <select id="cctld">
                 <option value="fr">.fr</option>
                 <option value="nl">.nl</option>
@@ -126,7 +126,7 @@
             </select>
         </div>
         <div class="formline">
-            <label for="environment">Environnement</label>
+            <label class="tr" data-label="environment" for="environment">Environnement</label>
             <select id="environment">
                 <option value="www-ite1">ITE1</option>
                 <option value="www-ite2">ITE2</option>
@@ -141,24 +141,24 @@
             </select>
         </div>
         <div class="formline">
-            <label for="brand">Marque</label>
+            <label class="tr" data-label="brand" for="brand">Marque</label>
             <select id="brand">
                 <option value="airfrance">AF</option>
                 <option value="klm">KL</option>
             </select>
         </div>
         <div class="formline">
-            <label for="page">Page</label>
+            <label class="tr" data-label="page" for="page">Page</label>
             <select id="page">
-                <option value="aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fS97e2xhbmd1YWdlfX0vY2hlY2staW4vbGFuZGluZy1wYWdl">landing page</option>
-                <option value="aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fS97e2xhbmd1YWdlfX0vY2hlY2staW4=">direct</option>
-                <option value="aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fS97e2xhbmd1YWdlfX0vY2hlY2staW4vdG9wLXRhc2tz">top tasks</option>
+                <option class="tr" data-label="page.landingpage" value="aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fS97e2xhbmd1YWdlfX0vY2hlY2staW4vbGFuZGluZy1wYWdl">landing page</option>
+                <option class="tr" data-label="page.direct" value="aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fS97e2xhbmd1YWdlfX0vY2hlY2staW4=">direct</option>
+                <option class="tr" data-label="page.toptasks" value="aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fS97e2xhbmd1YWdlfX0vY2hlY2staW4vdG9wLXRhc2tz">top tasks</option>
             </select>
         </div>
     </fieldset>
 </form>
 
-<script type="text/javascript">
+<script type="text/javascript" defer>
 var FORM_FIELDS = [
     "language",
     "cctld",
@@ -169,6 +169,120 @@ var FORM_FIELDS = [
     "flightnumber",
     "departurestation"
 ];
+
+var LABELS = [
+    {
+        id: "title",
+        fr: "Allez hop!",
+        en: "Just do it!",
+        nl: "Instappen!"
+    },
+    {
+        id: "ticketnumber",
+        fr: "N<sup>o</sup> de billet",
+        en: "Ticket number",
+        nl: "Ticketnummer"
+    },
+    {
+        id: "flightnumber",
+        fr: "N<sup>o</sup> du vol",
+        en: "Flight number",
+        nl: "Vluchtnummer"
+    },
+    {
+        id: "departurestation",
+        fr: "Départ de",
+        en: "Departure station",
+        nl: "Vertrekstation"
+    },
+    {
+        id: "submit",
+        fr: "Enregistre moi",
+        en: "Check me in",
+        nl: "Gaan met die banaan"
+    },
+    {
+        id: "language",
+        fr: "Langue",
+        en: "Language",
+        nl: "Taal"
+    },
+    {
+        id: "cctld",
+        fr: "Pays",
+        en: "Country",
+        nl: "Land"
+    },
+    {
+        id: "environment",
+        fr: "Environnement",
+        en: "Environment",
+        nl: "Omgeving"
+    },
+    {
+        id: "brand",
+        fr: "Marque",
+        en: "Brand",
+        nl: "Merk"
+    },
+    {
+        id: "page",
+        fr: "Page",
+        en: "Page",
+        nl: "Pagina"
+    },
+    {
+        id: "page.landingpage",
+        fr: "page de réception",
+        en: "landing page",
+        nl: "landingspagina"
+    },
+    {
+        id: "page.direct",
+        fr: "direct",
+        en: "direct",
+        nl: "direct"
+    },
+    {
+        id: "page.toptasks",
+        fr: "tâches principale",
+        en: "top tasks",
+        nl: "toptaken"
+    }
+
+];
+
+function getTranslation(pId, pLanguage) {
+    const lLabels = LABELS.filter(pLabel => pLabel.id === pId);
+    if (lLabels.length === 1) {
+        lLabel = lLabels[0];
+    } else {
+        return pId
+    }
+    const lLanguage = lLabel.hasOwnProperty(pLanguage) ? pLanguage : 'fr'
+    return lLabel[lLanguage];
+}
+
+function translate(pLanguage) {
+    const lTranslateableElements = document.getElementsByClassName('tr');
+
+    for (i = 0; i < lTranslateableElements.length; i++){
+        const lTranslation = getTranslation(
+            lTranslateableElements[i].attributes["data-label"].value,
+            pLanguage
+        );
+        switch (lTranslateableElements[i].nodeName) {
+            case "LABEL":
+            case "H1":
+            case "OPTION":
+                lTranslateableElements[i].innerHTML = lTranslation;
+                break;
+            default:
+                lTranslateableElements[i].value = lTranslation
+        }
+
+    }
+}
 
 function saveTheForm(){
     if (typeof localStorage !== 'undefined'){
@@ -188,7 +302,7 @@ function fillTheForm(){
 
 function addFormChangeListeners(){
     FORM_FIELDS.forEach(function(pFormField){
-      document.getElementById(pFormField).addEventListener("change", saveTheForm, false);
+        document.getElementById(pFormField).addEventListener("change", saveTheForm, false);
     });
 }
 
@@ -208,20 +322,35 @@ function normalizeTicketNumber(pTicketNumber){
 }
 
 function setTicketNumberToNormalized(pEvent){
-    document.getElementById('ticketnumber').value = normalizeTicketNumber(pEvent.target.value);
+    pEvent.target.value = normalizeTicketNumber(pEvent.target.value);
+}
+
+function automaticUpperCase(pEvent) {
+    pEvent.target.value = pEvent.target.value.toUpperCase();
+}
+
+function setTranslation(pEvent) {
+    translate(pEvent.target.value);
 }
 
 function main(){
     fillTheForm();
-    addFormChangeListeners();
     setActionURL();
+    translate(document.getElementById('language').value);
 
     document.getElementById('page').addEventListener("change", setActionURL, false);
     document.getElementById('environment').addEventListener("change", setActionURL, false);
     document.getElementById('brand').addEventListener("change", setActionURL, false);
     document.getElementById('cctld').addEventListener("change", setActionURL, false);
     document.getElementById('language').addEventListener("change", setActionURL, false);
-    document.getElementById('ticketnumber').addEventListener("change", setTicketNumberToNormalized, false)
+
+    document.getElementById('language').addEventListener("change", setTranslation, false);
+
+    document.getElementById('ticketnumber').addEventListener("change", setTicketNumberToNormalized, false);
+    document.getElementById('flightnumber').addEventListener("change", automaticUpperCase, false);
+    document.getElementById('departurestation').addEventListener("change", automaticUpperCase, false);
+
+    addFormChangeListeners();
 }
 
 main();
