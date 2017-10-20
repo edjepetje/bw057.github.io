@@ -88,13 +88,16 @@
     <fieldset>
         <legend><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></legend>
         <div class="formline">
-            <label data-label="ticketnumber" class="tr" for="ticketnumber">N<sup>o</sup> de billet</label><input type="text" inputmode="numeric" pattern="[0-9]{13}|[0-9]{3}-[0-9]{10}" name="ticketnumber" id="ticketnumber" value="">
+            <label data-label="ticketnumber" class="tr" for="ticketnumber">N<sup>o</sup> de billet</label>
+            <input type="text" inputmode="numeric" pattern="[0-9]{13}|[0-9]{3}-[0-9]{10}" name="ticketnumber" id="ticketnumber" value="" title="13 numbers">
         </div>
         <div class="formline">
-          <label data-label="flightnumber" class="tr" for="flightnumber">N<sup>o</sup> du vol</label><input type="text" name="flightnumber" pattern="[A-Z]{2}[0-9]{1,4}" id="flightnumber" value="">
+          <label data-label="flightnumber" class="tr" for="flightnumber">N<sup>o</sup> du vol</label>
+          <input type="text" name="flightnumber" pattern="[A-Z]{2}[0-9]{1,4}" id="flightnumber" value="" title="a valid flight number">
         </div>
         <div class="formline">
-            <label data-label="departurestation" class="tr" for="departurestation">Départ de</label><input type="text" name="departurestation" pattern="[A-Z]{3}" id="departurestation" value="AMS">
+            <label data-label="departurestation" class="tr" for="departurestation">Départ de</label>
+            <input type="text" name="departurestation" pattern="[A-Z]{3}" id="departurestation" value="AMS" title="3 letter IATA airport code">
         </div>
         <div class="formline">
             <input class="btn tr" data-label="submit" type="submit" value="Enregistre moi"></input>
@@ -150,10 +153,14 @@
         <div class="formline">
             <label class="tr" data-label="page" for="page">Page</label>
             <select id="page">
-                <option class="tr" data-label="page.landingpage" value="aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fS97e2xhbmd1YWdlfX0vY2hlY2staW4vbGFuZGluZy1wYWdl">landing page</option>
-                <option class="tr" data-label="page.direct" value="aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fS97e2xhbmd1YWdlfX0vY2hlY2staW4=">direct</option>
-                <option class="tr" data-label="page.toptasks" value="aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fS97e2xhbmd1YWdlfX0vY2hlY2staW4vdG9wLXRhc2tz">top tasks</option>
+                <option class="tr" data-label="page.landingpage" value="aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fXt7ZmVhdHVyZWJyYW5jaH19L3t7bGFuZ3VhZ2V9fS9jaGVjay1pbi9sYW5kaW5nLXBhZ2U=">landing page</option>
+                <option class="tr" data-label="page.direct" value="aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fXt7ZmVhdHVyZWJyYW5jaH19L3t7bGFuZ3VhZ2V9fS9jaGVjay1pbg==">direct</option>
+                <option class="tr" data-label="page.toptasks" value="aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fXt7ZmVhdHVyZWJyYW5jaH19L3t7bGFuZ3VhZ2V9fS9jaGVjay1pbi90b3AtdGFza3M=">top tasks</option>
             </select>
+        </div>
+        <div class="formline">
+            <label class="tr" data-label="featurebranch" for="featurebranch">Page</label>
+            <input type="text" inputmode="numeric" pattern="^/.+" id="featurebranch" title="Start the featurebranch with a '/', e.g. '/cool-feature'" value="">
         </div>
     </fieldset>
 </form>
@@ -165,6 +172,7 @@ var FORM_FIELDS = [
     "environment",
     "brand",
     "page",
+    "featurebranch",
     "ticketnumber",
     "flightnumber",
     "departurestation"
@@ -248,6 +256,12 @@ var LABELS = [
         fr: "tâches principale",
         en: "top tasks",
         nl: "toptaken"
+    },
+    {
+        id: "featurebranch",
+        fr: "Branche de fonc<sup>té</sup>",
+        en: "Feature branch",
+        nl: "Functietak"
     }
 
 ];
@@ -314,7 +328,8 @@ function setActionURL(pEvent){
         .replace("{{environment}}", document.getElementById('environment').value)
         .replace("{{brand}}", document.getElementById('brand').value)
         .replace("{{cctld}}", document.getElementById('cctld').value)
-        .replace("{{language}}", document.getElementById('language').value);
+        .replace("{{language}}", document.getElementById('language').value)
+        .replace("{{featurebranch}}", document.getElementById('featurebranch').value);
 }
 
 function normalizeTicketNumber(pTicketNumber){
