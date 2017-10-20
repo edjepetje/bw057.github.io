@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <meta charset="utf-8">
     <meta name="robots" content="noindex">
@@ -97,7 +97,7 @@
         color: #51c3ee;
     }
     .brand-klm h1 {
-        font-weight:200;
+        font-weight: 400;
     }
     .brand-klm .btn {
         background-color: #e37222;
@@ -121,7 +121,7 @@
         </div>
         <div class="formline">
             <label data-label="departurestation" class="tr" for="departurestation">Départ de</label>
-            <input type="text" name="departurestation" pattern="[A-Z]{3}" id="departurestation" value="AMS" title="3 letter IATA airport code">
+            <input type="text" name="departurestation" pattern="[A-Z]{3}" id="departurestation" value="AMS" title="3 varter IATA airport code">
         </div>
         <div class="formline">
             <input class="btn tr" data-label="submit" type="submit" value="Enregistre moi"></input>
@@ -287,25 +287,26 @@ var LABELS = [
         en: "Feature branch",
         nl: "Functietak"
     }
-
 ];
 
 function getTranslation(pId, pLanguage) {
-    const lLabels = LABELS.filter(pLabel => pLabel.id === pId);
+    var lLabels = LABELS.filter(function(pLabel) {return pLabel.id === pId});
     if (lLabels.length === 1) {
         lLabel = lLabels[0];
     } else {
-        return pId
+        return pId;
     }
-    const lLanguage = lLabel.hasOwnProperty(pLanguage) ? pLanguage : 'fr'
+    var lLanguage = lLabel.hasOwnProperty(pLanguage) ? pLanguage : 'fr'
     return lLabel[lLanguage];
 }
 
 function translate(pLanguage) {
-    const lTranslateableElements = document.getElementsByClassName('tr');
+    var lTranslateableElements = document.getElementsByClassName('tr');
+
+    document.getElementsByTagName('html')[0].setAttribute('lang', pLanguage);
 
     for (i = 0; i < lTranslateableElements.length; i++){
-        const lTranslation = getTranslation(
+        var lTranslation = getTranslation(
             lTranslateableElements[i].attributes["data-label"].value,
             pLanguage
         );
@@ -318,7 +319,6 @@ function translate(pLanguage) {
             default:
                 lTranslateableElements[i].value = lTranslation
         }
-
     }
 }
 
@@ -372,9 +372,6 @@ function automaticUpperCase(pEvent) {
     pEvent.target.value = pEvent.target.value.toUpperCase();
 }
 
-function setTranslation(pEvent) {
-    translate(pEvent.target.value);
-}
 
 function main(){
     fillTheForm();
@@ -389,413 +386,8 @@ function main(){
     document.getElementById('featurebranch').addEventListener("change", setActionURL, false);
     document.getElementById('language').addEventListener("change", setActionURL, false);
 
-    document.getElementById('language').addEventListener("change", setTranslation, false);
-    document.getElementById('brand').addEventListener("change", pEvent => setBrand(pEvent.target.value), false);
-
-    document.getElementById('ticketnumber').addEventListener("change", setTicketNumberToNormalized, false);
-    document.getElementById('flightnumber').addEventListener("change", automaticUpperCase, false);
-    document.getElementById('departurestation').addEventListener("change", automaticUpperCase, false);
-
-    addFormChangeListeners();
-}
-
-main();
-</script>
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="robots" content="noindex">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-    <title>Einsteigen!</title>
-    <style media="screen">
-    html {
-      font-family: sans-serif;
-    }
-    * {
-      box-sizing: border-box;
-      transition: all ease .3s; /*cough* errm *cough*/
-    }
-    label {
-      display: inline-block;
-      min-width: 9em;
-      border: 1em;
-      color: darkgrey;
-    }
-    .formline {
-      display: block;
-      margin: 1em;
-    }
-    input[type=text], select {
-      background: transparent;
-      font: inherit;
-      width: 15rem;
-      border-top: 0px solid transparent;
-      border-right: 0px solid transparent;
-      border-left: 0px solid transparent;
-      border-bottom: 1px solid grey;
-    }
-    input[type=text] {
-      margin-left: 5px;
-    }
-    .btn {
-      display: inline-block;
-      margin-bottom: 1rem;
-      margin-left: 17.5rem;
-      color: rgba(255, 255, 255, 0.9);
-      background-color: rgba(40, 40, 40, 1);
-      border-color: rgba(255, 255, 255, 0.2);
-      border-style: solid;
-      border-width: 1px;
-      border-radius: 0;
-      font: inherit;
-    }
-    .btn:hover {
-      color: rgba(255, 255, 255, 1);
-      text-decoration: none;
-      background-color: rgba(80, 80, 80, 1);
-      border-color: rgba(255, 255, 255, 0.3);
-    }
-
-    fieldset {
-        background-color: #FAFAFA;
-        border: none;
-        margin-bottom: 2rem;
-    }
-
-    @media screen and (min-width: 42em) {
-      .btn {
-        padding: 0.6rem 0.9rem;
-        font-size: 0.9rem;
-       }
-    }
-
-    @media screen and (max-width: 42em) {
-      .btn {
-        display: block;
-        margin-left: inherit;
-        width: 100%;
-        padding: 0.75rem;
-        font-size: 0.9rem;
-      }
-    }
-    @media screen and (max-width: 36em) {
-      input[type=text] {
-        margin-left: 0;
-      }
-    }
-    </style>
-    <style>
-    .brand-airfrance {
-        color: rgb(5,16,57);
-        font-variant: small-caps;
-    }
-    .brand-airfrance .btn {
-        background-color: #ed0000;
-    }
-    .brand-airfrance input[type=text], select {
-        font-variant: normal;
-    }
-    .brand-klm {
-        color: #51c3ee;
-    }
-    .brand-klm h1 {
-        font-weight:200;
-    }
-    .brand-klm .btn {
-        background-color: #e37222;
-        font-weight: bold;
-        border-radius: 2em;
-    }
-    </style>
-  </head>
-<body>
-<h1 class="tr" data-label="title">Allez hop!</h1>
-<form id="daform" action="voycamino" method="get">
-    <fieldset>
-        <legend><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></legend>
-        <div class="formline">
-            <label data-label="ticketnumber" class="tr" for="ticketnumber">N<sup>o</sup> de billet</label>
-            <input type="text" inputmode="numeric" pattern="[0-9]{13}|[0-9]{3}-[0-9]{10}" name="ticketnumber" id="ticketnumber" value="" title="13 numbers">
-        </div>
-        <div class="formline">
-          <label data-label="flightnumber" class="tr" for="flightnumber">N<sup>o</sup> du vol</label>
-          <input type="text" name="flightnumber" pattern="[A-Z]{2}[0-9]{1,4}" id="flightnumber" value="" title="a valid flight number">
-        </div>
-        <div class="formline">
-            <label data-label="departurestation" class="tr" for="departurestation">Départ de</label>
-            <input type="text" name="departurestation" pattern="[A-Z]{3}" id="departurestation" value="AMS" title="3 letter IATA airport code">
-        </div>
-        <div class="formline">
-            <input class="btn tr" data-label="submit" type="submit" value="Enregistre moi"></input>
-        </div>
-    </fieldset>
-
-    <fieldset>
-        <legend>
-            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
-        </legend>
-        <div class="formline">
-            <label class="tr" data-label="language" for="language">Langue</label>
-            <select id="language">
-                <option value="en">English</option>
-                <option value="fr">Français</option>
-                <option value="nl">Nederlands</option>
-            </select>
-        </div>
-        <div class="formline">
-            <label class="tr" data-label="cctld" for="cctld">Pays</label>
-            <select id="cctld">
-                <option value="fr">.fr</option>
-                <option value="nl">.nl</option>
-                <option value="de">.de</option>
-                <option value="es">.es</option>
-                <option value="dk">.dk</option>
-                <option value="co.uk">.co.uk</option>
-                <option value="com">.com</option>
-            </select>
-        </div>
-        <div class="formline">
-            <label class="tr" data-label="environment" for="environment">Environnement</label>
-            <select id="environment">
-                <option value="www-ite1">ITE1</option>
-                <option value="www-ite2">ITE2</option>
-                <option value="www-ite3">ITE3</option>
-                <option value="www-ute1">UTE1</option>
-                <option value="www-ute2">UTE2</option>
-                <option value="www-ute3">UTE3</option>
-                <option value="wwws">UTE4</option>
-                <option value="www-ae1">AE1</option>
-                <option value="www-ae2">AE2</option>
-                <option value="www-ae3">AE3</option>
-            </select>
-        </div>
-        <div class="formline">
-            <label class="tr" data-label="brand" for="brand">Marque</label>
-            <select id="brand">
-                <option value="airfrance">AF</option>
-                <option value="klm">KL</option>
-            </select>
-        </div>
-        <div class="formline">
-            <label class="tr" data-label="page" for="page">Page</label>
-            <select id="page">
-                <option class="tr" data-label="page.landingpage" value="aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fXt7ZmVhdHVyZWJyYW5jaH19L3t7bGFuZ3VhZ2V9fS9jaGVjay1pbi9sYW5kaW5nLXBhZ2U=">landing page</option>
-                <option class="tr" data-label="page.direct" value="aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fXt7ZmVhdHVyZWJyYW5jaH19L3t7bGFuZ3VhZ2V9fS9jaGVjay1pbg==">direct</option>
-                <option class="tr" data-label="page.toptasks" value="aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fXt7ZmVhdHVyZWJyYW5jaH19L3t7bGFuZ3VhZ2V9fS9jaGVjay1pbi90b3AtdGFza3M=">top tasks</option>
-            </select>
-        </div>
-        <div class="formline">
-            <label class="tr" data-label="featurebranch" for="featurebranch">Page</label>
-            <input type="text" inputmode="numeric" pattern="^/.+" id="featurebranch" title="Start the featurebranch with a '/', e.g. '/cool-feature'" value="">
-        </div>
-    </fieldset>
-</form>
-
-<script type="text/javascript" defer>
-var FORM_FIELDS = [
-    "language",
-    "cctld",
-    "environment",
-    "brand",
-    "page",
-    "featurebranch",
-    "ticketnumber",
-    "flightnumber",
-    "departurestation"
-];
-
-var LABELS = [
-    {
-        id: "title",
-        fr: "Allez hop!",
-        en: "Just do it!",
-        nl: "Instappen!"
-    },
-    {
-        id: "ticketnumber",
-        fr: "N<sup>o</sup> de billet",
-        en: "Ticket number",
-        nl: "Ticketnummer"
-    },
-    {
-        id: "flightnumber",
-        fr: "N<sup>o</sup> du vol",
-        en: "Flight number",
-        nl: "Vluchtnummer"
-    },
-    {
-        id: "departurestation",
-        fr: "Départ de",
-        en: "Departure station",
-        nl: "Vertrekstation"
-    },
-    {
-        id: "submit",
-        fr: "Enregistre moi",
-        en: "Check me in",
-        nl: "Gaan met die banaan"
-    },
-    {
-        id: "language",
-        fr: "Langue",
-        en: "Language",
-        nl: "Taal"
-    },
-    {
-        id: "cctld",
-        fr: "Pays",
-        en: "Country",
-        nl: "Land"
-    },
-    {
-        id: "environment",
-        fr: "Environnement",
-        en: "Environment",
-        nl: "Omgeving"
-    },
-    {
-        id: "brand",
-        fr: "Marque",
-        en: "Brand",
-        nl: "Merk"
-    },
-    {
-        id: "page",
-        fr: "Page",
-        en: "Page",
-        nl: "Pagina"
-    },
-    {
-        id: "page.landingpage",
-        fr: "page de réception",
-        en: "landing page",
-        nl: "landingspagina"
-    },
-    {
-        id: "page.direct",
-        fr: "direct",
-        en: "direct",
-        nl: "direct"
-    },
-    {
-        id: "page.toptasks",
-        fr: "tâches principale",
-        en: "top tasks",
-        nl: "toptaken"
-    },
-    {
-        id: "featurebranch",
-        fr: "Branche de fonc<sup>té</sup>",
-        en: "Feature branch",
-        nl: "Functietak"
-    }
-
-];
-
-function getTranslation(pId, pLanguage) {
-    const lLabels = LABELS.filter(pLabel => pLabel.id === pId);
-    if (lLabels.length === 1) {
-        lLabel = lLabels[0];
-    } else {
-        return pId
-    }
-    const lLanguage = lLabel.hasOwnProperty(pLanguage) ? pLanguage : 'fr'
-    return lLabel[lLanguage];
-}
-
-function translate(pLanguage) {
-    const lTranslateableElements = document.getElementsByClassName('tr');
-
-    for (i = 0; i < lTranslateableElements.length; i++){
-        const lTranslation = getTranslation(
-            lTranslateableElements[i].attributes["data-label"].value,
-            pLanguage
-        );
-        switch (lTranslateableElements[i].nodeName) {
-            case "LABEL":
-            case "H1":
-            case "OPTION":
-                lTranslateableElements[i].innerHTML = lTranslation;
-                break;
-            default:
-                lTranslateableElements[i].value = lTranslation
-        }
-
-    }
-}
-
-function setBrand(pBrand) {
-    document.body.setAttribute("class",`brand-${pBrand}`);
-}
-
-function saveTheForm(){
-    if (typeof localStorage !== 'undefined'){
-        FORM_FIELDS.forEach(function(pFormField){
-            localStorage.setItem(pFormField, document.getElementById(pFormField).value);
-        });
-    }
-}
-
-function fillTheForm(){
-  FORM_FIELDS.forEach(function(pFormField){
-        if (localStorage.getItem(pFormField)){
-            document.getElementById(pFormField).value = localStorage.getItem(pFormField);
-        }
-  });
-}
-
-function addFormChangeListeners(){
-    FORM_FIELDS.forEach(function(pFormField){
-        document.getElementById(pFormField).addEventListener("change", saveTheForm, false);
-    });
-}
-
-function setActionURL(pEvent){
-    window.daform.action =
-        window.atob(
-            document.getElementById('page').value
-        )
-        .replace("{{environment}}", document.getElementById('environment').value)
-        .replace("{{brand}}", document.getElementById('brand').value)
-        .replace("{{cctld}}", document.getElementById('cctld').value)
-        .replace("{{language}}", document.getElementById('language').value)
-        .replace("{{featurebranch}}", document.getElementById('featurebranch').value);
-}
-
-function normalizeTicketNumber(pTicketNumber){
-    return pTicketNumber.replace(/[^0-9]/g, "");
-}
-
-function setTicketNumberToNormalized(pEvent){
-    pEvent.target.value = normalizeTicketNumber(pEvent.target.value);
-}
-
-function automaticUpperCase(pEvent) {
-    pEvent.target.value = pEvent.target.value.toUpperCase();
-}
-
-function setTranslation(pEvent) {
-    translate(pEvent.target.value);
-}
-
-function main(){
-    fillTheForm();
-    setActionURL();
-    translate(document.getElementById('language').value);
-    setBrand(document.getElementById('brand').value);
-
-    document.getElementById('page').addEventListener("change", setActionURL, false);
-    document.getElementById('environment').addEventListener("change", setActionURL, false);
-    document.getElementById('brand').addEventListener("change", setActionURL, false);
-    document.getElementById('cctld').addEventListener("change", setActionURL, false);
-    document.getElementById('featurebranch').addEventListener("change", setActionURL, false);
-    document.getElementById('language').addEventListener("change", setActionURL, false);
-
-    document.getElementById('language').addEventListener("change", setTranslation, false);
-    document.getElementById('brand').addEventListener("change", pEvent => setBrand(pEvent.target.value), false);
+    document.getElementById('brand').addEventListener("change", function(pEvent){setBrand(pEvent.target.value);}, false);
+    document.getElementById('language').addEventListener("change", function(pEvent){translate(pEvent.target.value);}, false);
 
     document.getElementById('ticketnumber').addEventListener("change", setTicketNumberToNormalized, false);
     document.getElementById('flightnumber').addEventListener("change", automaticUpperCase, false);
