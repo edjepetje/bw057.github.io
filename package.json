@@ -1,0 +1,22 @@
+{
+  "name": "bw057.github.io",
+  "version": "1.0.0",
+  "description": "stuff",
+  "scripts": {
+    "build": "sw-precache --config .sw-precache-config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bw057/bw057.github.io.git"
+  },
+  "keywords": [],
+  "author": "Johnathan Doe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bw057/bw057.github.io/issues"
+  },
+  "homepage": "https://localhost",
+  "devDependencies": {
+    "sw-precache": "5.2.0"
+  }
+}

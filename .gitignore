@@ -1,0 +1,18 @@
+# tmp files
+.DS_Store
+*.swp
+*.swo
+src/*tmp*.*
+*tmp*.*
+*tmp*/**
+
+# ide garbage
+.vscode
+.project
+.settings/*
+
+# node and npm
+/node_modules/
+isolate-*-v8.log
+npm-debug.log
+package-lock.json
