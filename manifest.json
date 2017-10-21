@@ -1,0 +1,17 @@
+{
+  "short_name": "Einsteigen!",
+  "name": "Einsteigen!",
+  "theme_color": "#051039",
+  "background_color": "#051039",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./stuff.html",
+  "display": "standalone",
+  "lang": "fr",
+  "orientation": "portrait"
+}

@@ -3,7 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="robots" content="noindex">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#051039">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#051039">
+    <meta name="apple-mobile-web-app-title" content="Einsteigen!">
+    <link rel="shortcut icon" href="./favicon.png">
+    <link rel="manifest" href="manifest.json">
     <title>Einsteigen!</title>
     <style media="screen">
     html {
@@ -17,7 +24,7 @@
       display: inline-block;
       min-width: 9em;
       border: 1em;
-      color: darkgrey;
+      color: #737373;
     }
     .formline {
       display: block;
@@ -81,10 +88,8 @@
         margin-left: 0;
       }
     }
-    </style>
-    <style>
     .brand-airfrance {
-        color: rgb(5,16,57);
+        color: #051039;
         font-variant: small-caps;
     }
     .brand-airfrance .btn {
@@ -106,10 +111,10 @@
     }
     </style>
   </head>
-<body>
+<body class="brand-airfrance">
 <h1 class="tr" data-label="title">Allez hop!</h1>
 <form id="daform" action="voycamino" method="get">
-    <fieldset>
+    <fieldset aria-label="parameters">
         <legend><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></legend>
         <div class="formline">
             <label data-label="ticketnumber" class="tr" for="ticketnumber">N<sup>o</sup> de billet</label>
@@ -128,7 +133,7 @@
         </div>
     </fieldset>
 
-    <fieldset>
+    <fieldset aria-label="settings">
         <legend>
             <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
         </legend>
@@ -136,14 +141,14 @@
             <label class="tr" data-label="language" for="language">Langue</label>
             <select id="language">
                 <option value="en">English</option>
-                <option value="fr">Français</option>
+                <option value="fr" selected="true">Français</option>
                 <option value="nl">Nederlands</option>
             </select>
         </div>
         <div class="formline">
             <label class="tr" data-label="cctld" for="cctld">Pays</label>
             <select id="cctld">
-                <option value="fr">.fr</option>
+                <option value="fr" selected="true">.fr</option>
                 <option value="nl">.nl</option>
                 <option value="de">.de</option>
                 <option value="es">.es</option>
@@ -160,7 +165,7 @@
                 <option value="www-ite3">ITE3</option>
                 <option value="www-ute1">UTE1</option>
                 <option value="www-ute2">UTE2</option>
-                <option value="www-ute3">UTE3</option>
+                <option value="www-ute3" selected="true">UTE3</option>
                 <option value="wwws">UTE4</option>
                 <option value="www-ae1">AE1</option>
                 <option value="www-ae2">AE2</option>
@@ -170,7 +175,7 @@
         <div class="formline">
             <label class="tr" data-label="brand" for="brand">Marque</label>
             <select id="brand">
-                <option value="airfrance">AF</option>
+                <option value="airfrance" selected="true">AF</option>
                 <option value="klm">KL</option>
             </select>
         </div>
@@ -178,7 +183,7 @@
             <label class="tr" data-label="page" for="page">Page</label>
             <select id="page">
                 <option class="tr" data-label="page.landingpage" value="aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fXt7ZmVhdHVyZWJyYW5jaH19L3t7bGFuZ3VhZ2V9fS9jaGVjay1pbi9sYW5kaW5nLXBhZ2U=">landing page</option>
-                <option class="tr" data-label="page.direct" value="aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fXt7ZmVhdHVyZWJyYW5jaH19L3t7bGFuZ3VhZ2V9fS9jaGVjay1pbg==">direct</option>
+                <option class="tr" data-label="page.direct" value="aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fXt7ZmVhdHVyZWJyYW5jaH19L3t7bGFuZ3VhZ2V9fS9jaGVjay1pbg==" selected="true">direct</option>
                 <option class="tr" data-label="page.toptasks" value="aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fXt7ZmVhdHVyZWJyYW5jaH19L3t7bGFuZ3VhZ2V9fS9jaGVjay1pbi90b3AtdGFza3M=">top tasks</option>
             </select>
         </div>
@@ -188,6 +193,16 @@
         </div>
     </fieldset>
 </form>
+
+<script type="text/javascript">
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }).catch(function(err) {
+        console.log('ServiceWorker registration failed: ', err);
+    });
+}
+</script>
 
 <script type="text/javascript" defer>
 var FORM_FIELDS = [
