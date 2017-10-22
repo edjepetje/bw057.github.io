@@ -9,7 +9,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#051039">
     <meta name="apple-mobile-web-app-title" content="Einsteigen!">
-    <link rel="shortcut icon" href="./favicon.png">
+    <link rel="shortcut icon" href="./icon.png">
     <link rel="manifest" href="manifest.json">
     <title>Einsteigen!</title>
     <style media="screen">
@@ -30,7 +30,7 @@
       display: block;
       margin: 1em;
     }
-    input[type=text], select {
+    input[type=text], input[type=tel], select {
       background: transparent;
       font: inherit;
       width: 15rem;
@@ -39,41 +39,35 @@
       border-left: 0px solid transparent;
       border-bottom: 1px solid grey;
     }
-    input[type=text] {
-      margin-left: 5px;
-    }
     .btn {
       display: inline-block;
       margin-bottom: 1rem;
       margin-left: 17.5rem;
-      color: rgba(255, 255, 255, 0.9);
-      background-color: rgba(40, 40, 40, 1);
-      border-color: rgba(255, 255, 255, 0.2);
-      border-style: solid;
-      border-width: 1px;
-      border-radius: 0;
-      font: inherit;
-    }
-    .btn:hover {
       color: rgba(255, 255, 255, 1);
-      text-decoration: none;
-      background-color: rgba(80, 80, 80, 1);
-      border-color: rgba(255, 255, 255, 0.3);
-    }
+      border-style: solid;
+      border-width: 0;
+      font: inherit;
+      font-weight: bold;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+                  0 3px 6px grey;
+      transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+      -webkit-transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1) 0s;
 
+    }
+    .btn:hover, .btn:active {
+        box-shadow: none;
+    }
     fieldset {
         background-color: #FAFAFA;
         border: none;
         margin-bottom: 2rem;
     }
-
     @media screen and (min-width: 42em) {
       .btn {
         padding: 0.6rem 0.9rem;
         font-size: 0.9rem;
        }
     }
-
     @media screen and (max-width: 42em) {
       .btn {
         display: block;
@@ -95,7 +89,7 @@
     .brand-airfrance .btn {
         background-color: #ed0000;
     }
-    .brand-airfrance input[type=text], select {
+    .brand-airfrance input[type=text], input[type=tel], select {
         font-variant: normal;
     }
     .brand-klm {
@@ -106,8 +100,7 @@
     }
     .brand-klm .btn {
         background-color: #e37222;
-        font-weight: bold;
-        border-radius: 2em;
+        border-radius: 2rem;
     }
     </style>
   </head>
@@ -118,7 +111,7 @@
         <legend><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></legend>
         <div class="formline">
             <label data-label="ticketnumber" class="tr" for="ticketnumber">N<sup>o</sup> de billet</label>
-            <input type="text" inputmode="numeric" pattern="[0-9]{13}|[0-9]{3}-[0-9]{10}" name="ticketnumber" id="ticketnumber" value="" title="13 numbers">
+            <input type="tel" inputmode="numeric" pattern="[0-9]{13}|[0-9]{3}-[0-9]{10}" name="ticketnumber" id="ticketnumber" value="" title="13 numbers">
         </div>
         <div class="formline">
           <label data-label="flightnumber" class="tr" for="flightnumber">N<sup>o</sup> du vol</label>
