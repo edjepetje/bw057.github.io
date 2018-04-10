@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<head>
+        <meta charset="utf-8">
+        <meta name="robots" content="noindex">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#051039">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="#051039">
+        <meta name="apple-mobile-web-app-title" content="Einsteigen">
+        <link rel="shortcut icon" href="./icon.png">
+        <link rel="manifest" href="manifest.json">
+        <title>Einsteigen</title>
+        <style media="screen">
+        html {
+          font-family: sans-serif
+        }
+        * {
+          box-sizing: border-box;
+          transition: all ease .3s
+        }
+        label {
+          display: inline-block;
+          min-width: 10em;
+          border: 1em;
+          color: #737373
+        }
+        .formline {
+          display: block;
+          margin: 1em
+        }
+        input[type=text], input[type=tel], select {
+          background: transparent;
+          font: inherit;
+          width: 15rem;
+          border: 0px solid transparent;
+          border-bottom: 1px solid grey
+        }
+        .btn {
+          display: inline-block;
+          margin-bottom: 1rem;
+          margin-left: 17.5rem;
+          color: rgba(255, 255, 255, 1);
+          border-style: solid;
+          border-width: 0;
+          font: inherit;
+          font-weight: bold;
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px grey;
+          transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+          -webkit-transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1) 0s
+      
+        }
+        .btn:hover, .btn:active { box-shadow: none }
+        fieldset {
+          background-color: #FAFAFA;
+          border: none;
+          margin-bottom: 2rem
+        }
+        @media screen and (min-width: 42em) {
+          .btn {
+          padding: 0.6rem 0.9rem;
+           }
+        }
+        @media screen and (max-width: 42em) {
+          .btn {
+            display: block;
+            margin-left: inherit;
+            width: 100%;
+            padding: 0.75rem
+          }
+        }
+        @media screen and (max-width: 36em) {
+          input[type=text] {
+            margin-left: 0
+          }
+        }
+        .brand-airfrance {
+          color: #051039;
+          font-variant: small-caps
+        }
+        .brand-airfrance .btn {
+          background-color: #ed0000
+        }
+        .brand-airfrance input[type=text], input[type=tel], select {
+          font-variant: normal
+        }
+        .brand-klm {
+          color: #51c3ee;
+          font-variant: normal;
+        }
+        .brand-klm h1 {
+          font-weight: 400;
+        }
+        .brand-klm .btn {
+          background-color: #e37222;
+          border-radius: 2rem
+        }
+        </style>
+        </head>
+      <body class="brand-airfrance">
+      <h1 class="tr" data-label="title">Allez hop!</h1>
+    <body>
+        <form>
+            <fieldset aria-label="parameters">
+                <legend><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></legend>
+                <div class="formline">
+                <label data-label="departure" class="tr" for="departurestation">Départ de</label>
+                <input type="text" pattern="[A-Z]{3}" id="departure" title="3 letter IATA airport code">
+                </div>
+                <div class="formline">
+                <label data-label="arrival" class="tr" for="arrival">Arrive à</label>
+                <input type="text" pattern="[A-Z]{3}" id="arrival" title="3 letter IATA airport code">
+                </div>
+                <div class="formline">
+                <label data-label="departureDate" class="tr" for="departureDate">Date de departure</label>
+                <input type="text" id="departureDate" title="a return date">
+                </div>
+				<div class="formline">
+                <label data-label="returnDate" class="tr" for="returnDate">Date de retour</label>
+                <input type="text" id="returnDate" title="a return date">
+                </div>
+                <div class="formline">
+                <a id="link" class="btn tr" data-label="submit" type="submit" value="">Recherche la</a>
+                </div>
+            </fieldset>
+        </form>
+    <script>
+
+		function buildSearchQuery(pParams) {
+			return `https://${pParams.environment}.${pParams.brand}.${pParams.CCTLD}/${pParams.language}/search?connections=${pParams.departure}:A:${pParams.departureDate}>${pParams.arrival}:A-${pParams.arrival}:A:${pParams.returnDate}>${pParams.departure}:A&pax=${pParams.adultCount}:${pParams.childCount}:${pParams.infantCount}:${0}&activeConnection=0`;
+		}
+
+		var gModel = {
+			environment: 'www-ute3',
+			brand: 'airfrance',
+			CCTLD: 'fr',
+			language: 'fr',
+			departure: 'OSL',
+			arrival: 'CGK',
+			departureDate: '20180630',
+			returnDate: '20180703',
+			adultCount: 1,
+			childCount: 0,
+			infantCount: 0
+		};
+
+		console.log(
+			buildSearchQuery(gModel)
+		);
+		
+        function automaticUpperCase(pEvent) {
+           pEvent.target.value = pEvent.target.value.toUpperCase();
+        }
+
+		function updateViewModel(pEvent) {
+			gModel[pEvent.target.id] = pEvent.target.value;
+			showModel();
+		}
+
+		function showModel(){
+			document.getElementById('link').setAttribute("href", buildSearchQuery(gModel));
+			document.getElementById('departure').setAttribute("value", gModel.departure);
+			document.getElementById('arrival').setAttribute("value", gModel.arrival);
+			document.getElementById('departureDate').setAttribute("value", gModel.departureDate);
+			document.getElementById('returnDate').setAttribute("value", gModel.returnDate);
+			console.log(gModel);
+		}
+				
+        document.getElementById('departure').addEventListener("change", automaticUpperCase, false);
+        document.getElementById('arrival').addEventListener("change", automaticUpperCase, false);
+        document.getElementById('departure').addEventListener("change", updateViewModel, false);
+        document.getElementById('arrival').addEventListener("change", updateViewModel, false);
+        document.getElementById('departureDate').addEventListener("change", updateViewModel, false);
+		document.getElementById('returnDate').addEventListener("change", updateViewModel, false);
+		
+		showModel();
+
+    </script>
+</body>
+</html>
