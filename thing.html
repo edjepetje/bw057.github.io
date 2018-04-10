@@ -10,7 +10,7 @@
         <meta name="apple-mobile-web-app-title" content="Einsteigen">
         <link rel="shortcut icon" href="./icon.png">
         <link rel="manifest" href="manifest.json">
-        <title>Einsteigen</title>
+        <title>Hello search</title>
         <style media="screen">
         html {
           font-family: sans-serif
@@ -98,7 +98,7 @@
         </style>
         </head>
       <body class="brand-airfrance">
-      <h1 class="tr" data-label="title">Allez hop!</h1>
+      <h1 class="tr" data-label="title">Bonjour recherche</h1>
     <body>
         <form>
             <fieldset aria-label="parameters">
@@ -113,11 +113,23 @@
                 </div>
                 <div class="formline">
                 <label data-label="departureDate" class="tr" for="departureDate">Date de departure</label>
-                <input type="text" id="departureDate" title="a return date">
+                <input type="text" pattern="[0-9]{8}" id="departureDate" title="a return date">
                 </div>
-				<div class="formline">
+                <div class="formline">
                 <label data-label="returnDate" class="tr" for="returnDate">Date de retour</label>
-                <input type="text" id="returnDate" title="a return date">
+                <input type="text" pattern="[0-9]{8}" id="returnDate" title="a return date">
+                </div>
+                <div class="formline">
+                <label data-label="adultCount" class="tr" for="adultCount">Adultes</label>
+                <input type="text" pattern="[1-9]{1}" id="adultCount" title="number of adults in the party">
+                </div>
+                <div class="formline">
+                <label data-label="childCount" class="tr" for="childCount">Enfants</label>
+                <input type="text" pattern="[1-9]{1}" id="childCount" title="number of children in the party">
+                </div>
+                <div class="formline">
+                <label data-label="infantCount" class="tr" for="infantCount">Bébés</label>
+                <input type="text" pattern="[1-9]{1}" id="infantCount" title="number of babies in the party">
                 </div>
                 <div class="formline">
                 <a id="link" class="btn tr" data-label="submit" type="submit" value="">Recherche la</a>
@@ -134,7 +146,7 @@
 			environment: 'www-ute3',
 			brand: 'airfrance',
 			CCTLD: 'fr',
-			language: 'fr',
+			language: 'en',
 			departure: 'OSL',
 			arrival: 'CGK',
 			departureDate: '20180630',
@@ -148,9 +160,9 @@
 			buildSearchQuery(gModel)
 		);
 		
-        function automaticUpperCase(pEvent) {
-           pEvent.target.value = pEvent.target.value.toUpperCase();
-        }
+    function automaticUpperCase(pEvent) {
+      pEvent.target.value = pEvent.target.value.toUpperCase();
+    }
 
 		function updateViewModel(pEvent) {
 			gModel[pEvent.target.id] = pEvent.target.value;
@@ -163,16 +175,22 @@
 			document.getElementById('arrival').setAttribute("value", gModel.arrival);
 			document.getElementById('departureDate').setAttribute("value", gModel.departureDate);
 			document.getElementById('returnDate').setAttribute("value", gModel.returnDate);
+      document.getElementById('adultCount').setAttribute("value", gModel.adultCount);
+      document.getElementById('childCount').setAttribute("value", gModel.childCount);
+      document.getElementById('infantCount').setAttribute("value", gModel.infantCount);
 			console.log(gModel);
 		}
 				
-        document.getElementById('departure').addEventListener("change", automaticUpperCase, false);
-        document.getElementById('arrival').addEventListener("change", automaticUpperCase, false);
-        document.getElementById('departure').addEventListener("change", updateViewModel, false);
-        document.getElementById('arrival').addEventListener("change", updateViewModel, false);
-        document.getElementById('departureDate').addEventListener("change", updateViewModel, false);
+    document.getElementById('departure').addEventListener("change", automaticUpperCase, false);
+    document.getElementById('arrival').addEventListener("change", automaticUpperCase, false);
+    document.getElementById('departure').addEventListener("change", updateViewModel, false);
+    document.getElementById('arrival').addEventListener("change", updateViewModel, false);
+    document.getElementById('departureDate').addEventListener("change", updateViewModel, false);
 		document.getElementById('returnDate').addEventListener("change", updateViewModel, false);
-		
+    document.getElementById('adultCount').addEventListener("change", updateViewModel, false);
+    document.getElementById('childCount').addEventListener("change", updateViewModel, false);
+    document.getElementById('infantCount').addEventListener("change", updateViewModel, false);
+
 		showModel();
 
     </script>
