@@ -100,7 +100,7 @@
       <body class="brand-airfrance">
       <h1 class="tr" data-label="title">Bonjour recherche</h1>
     <body>
-        <form>
+        <form action="about:blank" method="get">
             <fieldset aria-label="parameters">
                 <legend><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></legend>
                 <div class="formline">
@@ -132,15 +132,77 @@
                 <input type="number" pattern="[1-9]{1}" id="infantCount" title="number of babies in the party">
                 </div>
                 <div class="formline">
-                <a id="link" class="btn tr" data-label="submit" type="submit" value="">Recherche la</a>
+                <a id="link" style="text-decoration:none" class="btn tr" data-label="submit">Recherche la</a>
                 </div>
             </fieldset>
+            <fieldset aria-label="settings">
+                <legend>
+                  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+                </legend>
+                <div class="formline">
+                  <label class="tr" data-label="language" for="language">Langue</label>
+                  <select id="language">
+                    <option value="en">English</option>
+                    <option value="fr" selected="true">Français</option>
+                    <option value="nl">Nederlands</option>
+                  </select>
+                </div>
+                <div class="formline">
+                  <label class="tr" data-label="cctld" for="CCTLD">Pays</label>
+                  <select id="CCTLD">
+                    <option value="fr" selected="true">.fr</option>
+                    <option value="nl">.nl</option>
+                    <option value="de">.de</option>
+                    <option value="es">.es</option>
+                    <option value="dk">.dk</option>
+                    <option value="co.uk">.co.uk</option>
+                    <option value="com">.com</option>
+                  </select>
+                </div>
+                <div class="formline">
+                  <label class="tr" data-label="environment" for="environment">Environnement</label>
+                  <select id="environment">
+                    <option value="www-ite1">ITE1</option>
+                    <option value="www-ite2">ITE2</option>
+                    <option value="www-ite3">ITE3</option>
+                    <option value="www-ute1">UTE1</option>
+                    <option value="www-ute2">UTE2</option>
+                    <option value="www-ute3" selected="true">UTE3</option>
+                    <option value="wwws">UTE4</option>
+                    <option value="www-ae1">AE1</option>
+                    <option value="www-ae2">AE2</option>
+                    <option value="www-ae3">AE3</option>
+                  </select>
+                </div>
+                <div class="formline">
+                  <label class="tr" data-label="brand" for="brand">Marque</label>
+                  <select id="brand">
+                    <option value="airfrance" selected="true">AF</option>
+                    <option value="klm">KL</option>
+                  </select>
+                </div>
+                <div class="formline">
+                  <label class="tr" data-label="page" for="page">Page</label>
+                  <select id="page">
+                    <option class="tr" data-label="page.landingpage" value="aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fXt7ZmVhdHVyZWJyYW5jaH19L3t7bGFuZ3VhZ2V9fS9jaGVjay1pbi9sYW5kaW5nLXBhZ2U=">landing page</option>
+                    <option class="tr" data-label="page.direct" value="aHR0cHM6Ly97e2Vudmlyb25tZW50fX0ue3ticmFuZH19Lnt7Y2N0bGR9fXt7ZmVhdHVyZWJyYW5jaH19L3t7bGFuZ3VhZ2V9fS9jaGVjay1pbg==" selected="true">direct</option>
+                  </select>
+                </div>
+                <div class="formline">
+                  <label class="tr" data-label="featurebranch" for="featurebranch">Page</label>
+                  <input type="text" inputmode="numeric" pattern="^/.+" id="featurebranch" title="Start the featurebranch with a '/', e.g. '/cool-feature'" value="">
+                </div>
+              </fieldset>
         </form>
     <script>
 
 		function buildSearchQuery(pParams) {
 			return `https://${pParams.environment}.${pParams.brand}.${pParams.CCTLD}/${pParams.language}/search?connections=${pParams.departure}:A:${pParams.departureDate}>${pParams.arrival}:A-${pParams.arrival}:A:${pParams.returnDate}>${pParams.departure}:A&pax=${pParams.adultCount}:${pParams.childCount}:${pParams.infantCount}:${0}&activeConnection=0`;
 		}
+
+    function setBrand(pBrand) {
+      document.body.setAttribute("class", "brand-" + pBrand);
+    }
 
 		var gModel = {
 			environment: 'www-ute3',
@@ -178,6 +240,11 @@
       document.getElementById('adultCount').setAttribute("value", gModel.adultCount);
       document.getElementById('childCount').setAttribute("value", gModel.childCount);
       document.getElementById('infantCount').setAttribute("value", gModel.infantCount);
+      document.getElementById('environment').setAttribute("value", gModel.environment);
+      document.getElementById('brand').setAttribute("value", gModel.brand);
+      document.getElementById('CCTLD').setAttribute("value", gModel.CCTLD);
+      document.getElementById('language').setAttribute("value", gModel.language);
+      setBrand(gModel.brand);
 			console.log(gModel);
 		}
 				
@@ -190,6 +257,10 @@
     document.getElementById('adultCount').addEventListener("change", updateViewModel, false);
     document.getElementById('childCount').addEventListener("change", updateViewModel, false);
     document.getElementById('infantCount').addEventListener("change", updateViewModel, false);
+    document.getElementById('environment').addEventListener("change", updateViewModel, false);
+    document.getElementById('brand').addEventListener("change", updateViewModel, false);
+    document.getElementById('CCTLD').addEventListener("change", updateViewModel, false);
+    document.getElementById('language').addEventListener("change", updateViewModel, false);
 
 		showModel();
 
