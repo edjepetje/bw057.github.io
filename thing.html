@@ -186,7 +186,7 @@
     <script>
 
 		function buildSearchQuery(pParams) {
-			return `https://${pParams.environment}.${pParams.brand}.${pParams.CCTLD}/${pParams.language}/search?connections=${pParams.departure}:A:${pParams.departureDate}>${pParams.arrival}:A-${pParams.arrival}:A:${pParams.returnDate}>${pParams.departure}:A&pax=${pParams.adultCount}:${pParams.childCount}:${pParams.infantCount}:${0}&activeConnection=0`;
+			return "https://" + pParams.environment + "." + pParams.brand + "." + pParams.CCTLD + "/" + pParams.language + "/search?connections=" + pParams.departure + ":A:" + pParams.departureDate + ">" + pParams.arrival + ":A-" + pParams.arrival + ":A:" + pParams.returnDate + ">" + pParams.departure + ":A&pax=" + pParams.adultCount + ":" + pParams.childCount + ":" + pParams.infantCount + ":" + 0 + "&activeConnection=0";
 		}
 
     function setBrand(pBrand) {
