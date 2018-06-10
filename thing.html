@@ -222,7 +222,7 @@
 
       if (typeof localStorage !== 'undefined'){
         try {
-          lRetval = JSON.parse(localStorage.getItem(pKey));
+          lRetval = JSON.parse(localStorage.getItem(pKey)) || gModel;
         } catch (e) {
           console.warn(e);
         }
