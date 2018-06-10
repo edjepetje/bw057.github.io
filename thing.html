@@ -206,6 +206,7 @@
 			childCount: 0,
 			infantCount: 0
 		};
+    var LOCALSTORAGE_KEY = 'thing';
 
 		console.log(
 			buildSearchQuery(gModel)
@@ -217,12 +218,12 @@
       }
     }
     
-    function getState(pKey){
-      var lRetval = gModel;
+    function getState(pKey, pDefault){
+      var lRetval = pDefault;
 
       if (typeof localStorage !== 'undefined'){
         try {
-          lRetval = JSON.parse(localStorage.getItem(pKey)) || gModel;
+          lRetval = JSON.parse(localStorage.getItem(pKey)) || pDefault;
         } catch (e) {
           console.warn(e);
         }
@@ -236,7 +237,7 @@
 
 		function updateViewModel(pEvent) {
 			gModel[pEvent.target.id] = pEvent.target.value;
-      persistState('thing', gModel);
+      persistState(LOCALSTORAGE_KEY, gModel);
 			showModel();
 		}
 
@@ -271,7 +272,7 @@
     document.getElementById('CCTLD').addEventListener("change", updateViewModel, false);
     document.getElementById('language').addEventListener("change", updateViewModel, false);
 
-    gModel = getState('thing');
+    gModel = getState(LOCALSTORAGE_KEY, gModel);
 
 		showModel();
 
