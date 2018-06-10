@@ -200,8 +200,8 @@
 			language: 'en',
 			departure: 'ATH',
 			arrival: 'CDG',
-			departureDate: '20180730',
-			returnDate: '20180803',
+			departureDate: '20180924',
+			returnDate: '20181006',
 			adultCount: 1,
 			childCount: 0,
 			infantCount: 0
@@ -210,13 +210,33 @@
 		console.log(
 			buildSearchQuery(gModel)
 		);
-		
+
+    function persistState(pKey, pState){
+      if (typeof localStorage !== 'undefined'){
+          localStorage.setItem(pKey, JSON.stringify(pState));
+      }
+    }
+    
+    function getState(pKey){
+      var lRetval = gModel;
+
+      if (typeof localStorage !== 'undefined'){
+        try {
+          lRetval = JSON.parse(localStorage.getItem(pKey));
+        } catch (e) {
+          console.warn(e);
+        }
+      }
+      return lRetval;
+    }
+
     function automaticUpperCase(pEvent) {
       pEvent.target.value = pEvent.target.value.toUpperCase();
     }
 
 		function updateViewModel(pEvent) {
 			gModel[pEvent.target.id] = pEvent.target.value;
+      persistState('thing', gModel);
 			showModel();
 		}
 
@@ -250,6 +270,8 @@
     document.getElementById('brand').addEventListener("change", updateViewModel, false);
     document.getElementById('CCTLD').addEventListener("change", updateViewModel, false);
     document.getElementById('language').addEventListener("change", updateViewModel, false);
+
+    gModel = getState('thing');
 
 		showModel();
 
