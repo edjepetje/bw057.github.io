@@ -107,10 +107,11 @@
       <label data-label="ticketnumber" class="tr" for="ticketnumber">N<sup>o</sup> de billet</label>
       <input type="tel" inputmode="numeric" pattern="[0-9]{13}|[0-9]{3}-[0-9]{10}" name="ticketnumber" id="ticketnumber" value="" title="13 numbers">
     </div>
-    <div class="formline">
-      <label data-label="flightnumber" class="tr" for="flightnumber">N<sup>o</sup> du vol</label>
-      <input type="text" name="flightnumber" pattern="[A-Z]{1}[A-Z0-9]{1}[0-9]{1,4}" id="flightnumber" value="" title="a valid flight number">
-    </div>
+    -- flightnumber is no longer needed to be filled and therefore can be removed (checkin only works with no fltnumber of correct flightnumber :edwinFroeling)
+   -- <div class="formline">
+   --  <label data-label="flightnumber" class="tr" for="flightnumber">N<sup>o</sup> du vol</label>
+   --  <input type="text" name="flightnumber" pattern="[A-Z]{1}[A-Z0-9]{1}[0-9]{1,4}" id="flightnumber" value="" title="a valid flight number">
+   -- </div>
     <div class="formline">
       <label data-label="departurestation" class="tr" for="departurestation">Départ de</label>
       <input type="text" name="departurestation" pattern="[A-Z]{3}" id="departurestation" value="AMS" title="3 varter IATA airport code">
